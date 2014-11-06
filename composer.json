@@ -1,0 +1,20 @@
+{
+	"name" : "rifki/nova-oauth-client",
+	"description" : "NOVA Oauth2 Client",
+	"type" : "library",
+	"keywords": ["NOVA Oauth2 Client"],
+	"homepage": "http://github.com/rifki/nova-oauth-client",
+	"authors": [
+   	   {
+    	   "name": "Muhamad Rifki",
+            "email": "rifki@rifkilabs.net"
+	   }
+	],
+	 "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "files": ["lib/GramediaAccountClient.php"]
+    },
+    "minimum-stability": "stable"
+}
