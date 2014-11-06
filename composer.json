@@ -2,12 +2,12 @@
 	"name" : "rifki/nova-oauth-client",
 	"description" : "NOVA Oauth2 Client",
 	"type" : "library",
-	"keywords": ["Oauth2 Client, Library"],
+	"keywords": ["Oauth2 Client"],
 	"homepage": "http://github.com/rifki/nova-oauth-client",
 	"authors": [
    	   {
-    	   "name": "Muhamad Rifki",
-            "email": "rifki@rifkilabs.net"
+	       "name": "Muhamad Rifki",
+           "email": "rifki@rifkilabs.net"
 	   }
 	],
 	 "require": {
