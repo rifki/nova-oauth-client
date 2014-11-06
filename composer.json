@@ -2,7 +2,7 @@
 	"name" : "rifki/nova-oauth-client",
 	"description" : "NOVA Oauth2 Client",
 	"type" : "library",
-	"keywords": ["NOVA Oauth2 Client"],
+	"keywords": ["Oauth2 Client"],
 	"homepage": "http://github.com/rifki/nova-oauth-client",
 	"authors": [
    	   {
