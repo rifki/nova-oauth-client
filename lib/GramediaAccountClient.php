@@ -92,29 +92,20 @@ class GramediaAccountClient
 	*
 	* @return string 
 	*/
-	public function resourceUserURL() { 
-		return $this->getServer().'/user'; 
-	}
-	
-	/**
-	* Get the Resource Entries URL.
-	*
-	* @return string 
-	*/
-	public function resourceEntriesURL() { 
-		return $this->getServer().'/email'; 
+	public function resourceMembership() { 
+		return $this->getServer().'/membership'; 
 	}
 
    /**
 	* Makes an HTTP request.
 	*
 	* @param string $url The URL to make the request to
-	* @param array $params The parameters to use for the POST body
+	* @param array $post_params The parameters to use for the POST body
 	* @param headers
 	*
 	* @return string The response text
 	*/
-	public function apiRequest($url, $params=false, $headers=array()) 
+	public function apiRequest($url, $post_params=false, $headers=array()) 
 	{
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_USERAGENT, $this->useragent);
@@ -123,13 +114,13 @@ class GramediaAccountClient
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->ssl_verifypeer);
 
-		if ($params)
-		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+		if ($post_params)
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_params));
 
 		$headers[] = 'Accept: application/json';
 
-		if ($this->session('access_token'))
-		$headers[] = 'Authorization: Bearer ' . $this->session('access_token');
+		//if ($this->session('access_token'))
+		//$headers[] = 'Authorization: Bearer ' . $this->session('access_token');
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
