@@ -179,6 +179,14 @@ class GramediaAccountClient
 		$this->appsourceWebsite = $appsourceWebsite;
 		$this->appsourceSystem = $appsourceSystem;
 		$this->appsourceIpAddress = $appsourceIpAddress;
+
+		$appsource = array(
+			'appsource_website' 	=> $this->appsourceWebsite,
+			'appsource_system' 		=> $this->appsourceSystem,
+			'appsource_ip_address' 	=> $this->appsourceIpAddress
+		);
+		$_SESSION['appsource'] = $appsource;
+
 		return $this;
 	}
 
@@ -187,9 +195,9 @@ class GramediaAccountClient
 	*/
 	public function getAppsource() {
 		$appsource = array(
-			'appsource_website' 	=> null,
-			'appsource_system' 		=> null,
-			'appsource_ip_address' 	=> null
+			'appsource_website' 	=> $this->appsourceWebsite,
+			'appsource_system' 		=> $this->appsourceSystem,
+			'appsource_ip_address' 	=> $this->appsourceIpAddress
 		);
 		return $_SESSION['appsource'] = $appsource;
 	}
