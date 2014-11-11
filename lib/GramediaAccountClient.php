@@ -24,7 +24,7 @@ class GramediaAccountClient
 	protected $timeout = 30;
 
 	# ssl verifypeer
-	protected $ssl_verifypeer = false; 
+	protected $sslVerifypeer = false; 
 
 	# URL Host Server
 	protected $server;
@@ -38,6 +38,15 @@ class GramediaAccountClient
 	# callback
 	protected $callback;
 
+	# appsource website
+	protected $appsourceWebsite;
+
+	# appsource system/framework
+	protected $appsourceSystem;
+
+	# appsource ip address
+	protected $appsourceIpAddress;
+
 	/**
 	* Initialize a Gramedia Account Application.
 	*
@@ -46,6 +55,7 @@ class GramediaAccountClient
 	* 	- clientId: the client id
 	* 	- clientSecret: the client secret
 	* 	- callback: the callback URL
+	* 	- appsource: the system/framework source
 	*
 	* @param array $config The application configuration
 	*/
@@ -60,6 +70,7 @@ class GramediaAccountClient
 	    $this->setClientId($config['clientId']);
 	    $this->setClientSecret($config['clientSecret']);
 	    $this->setCallback($config['callback']);
+	    $this->setAppsource($config['appsourceWebsite'], $config['appsourceSystem'], $config['appsourceIpAddress']);
 	}
 
 	/**
@@ -112,7 +123,7 @@ class GramediaAccountClient
 	    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connecttimeout);
 	    curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->ssl_verifypeer);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->sslVerifypeer);
 
 		if ($post_params)
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_params));
@@ -157,7 +168,31 @@ class GramediaAccountClient
 	public function getState() 
 	{ 
 		return hash('sha256', microtime(true).rand());
-	}	
+	}
+
+	/**
+	* Create app source
+	*
+	* @return GramediaAccountClient
+	*/
+	public function setAppsource($appsourceWebsite, $appsourceSystem, $appsourceIpAddress) {
+		$this->appsourceWebsite = $appsourceWebsite;
+		$this->appsourceSystem = $appsourceSystem;
+		$this->appsourceIpAddress = $appsourceIpAddress;
+		return $this;
+	}
+
+	/**
+	* Generate App Source Session
+	*/
+	public function getAppsource() {
+		$appsource = array(
+			'appsource_website' 	=> null,
+			'appsource_system' 		=> null,
+			'appsource_ip_address' 	=> null
+		);
+		return $_SESSION['appsource'] = $appsource;
+	}
 
 	/**
 	* The host server oauth2
